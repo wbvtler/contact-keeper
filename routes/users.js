@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
@@ -18,6 +20,7 @@ router.post(
       'Please include a password with 6 or more characters'
     ).isLength({ min: 6 })
   ],
+  // asynk anonymous function with paramaters for request and sresponse
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -50,7 +53,23 @@ router.post(
       // wait for the user to save before continuing
       await user.save();
 
-      res.send(user);
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        {
+          expiresIn: 360000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
