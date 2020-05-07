@@ -15,6 +15,16 @@ export default (state, action) => {
         ...state,
         contacts: [...state.contacts, action.payload]
       };
+    case UPDATE_CONTACT:
+      return {
+        ...state,
+        // Map contacts to a new array
+        contacts: state.contacts.map((contact) => {
+          // If a contact has the same id as the updated contact,
+          // insert the updated contact, otherwise insert the existing contact
+          return contact.id !== action.payload.id ? contact : action.payload;
+        })
+      };
     case DELETE_CONTACT:
       return {
         ...state,
