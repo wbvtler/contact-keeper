@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -42,9 +43,9 @@ const Login = () => {
       </form>
       <p>
         Not a user?{' '}
-        <a href="/register">
+        <Link to="/register">
           <u>Sign up</u>
-        </a>
+        </Link>
       </p>
     </div>
   );
