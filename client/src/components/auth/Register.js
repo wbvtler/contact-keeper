@@ -12,6 +12,7 @@ const Register = (props) => {
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    // if the user authenticates, redirect to the dashboard
     if (isAuthenticated) {
       props.history.push('/');
     }
