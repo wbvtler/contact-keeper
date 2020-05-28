@@ -49,7 +49,7 @@ router.post(
         return res.status(404).json({ msg: 'Invalid Credentials' });
       }
 
-      // compare user entered password against stored password
+      // compare user entered password against encrypted password
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
