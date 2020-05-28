@@ -17,12 +17,20 @@ const Contacts = () => {
           // if contacts are filtered, show filtered, otherwise show all
           filtered !== null
             ? filtered.map((contact) => (
-                <CSSTransition key={contact.id} timeout={500} classNames="item">
+                <CSSTransition
+                  key={contact._id}
+                  timeout={500}
+                  classNames="item"
+                >
                   <ContactItem contact={contact} />
                 </CSSTransition>
               ))
             : contacts.map((contact) => (
-                <CSSTransition key={contact.id} timeout={500} classNames="item">
+                <CSSTransition
+                  key={contact._id}
+                  timeout={500}
+                  classNames="item"
+                >
                   <ContactItem contact={contact} />
                 </CSSTransition>
               ))
