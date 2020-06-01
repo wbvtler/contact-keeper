@@ -75,22 +75,26 @@ const ContactForm = () => {
         onChange={onChange}
       />
       <h5>Conatact Type</h5>
-      <input
-        type="radio"
-        name="type"
-        value="personal"
-        checked={type === 'personal'}
-        onChange={onChange}
-      />{' '}
-      Personal{' '}
-      <input
-        type="radio"
-        name="type"
-        value="professional"
-        checked={type === 'professional'}
-        onChange={onChange}
-      />{' '}
-      Professional
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="personal"
+          checked={type === 'personal'}
+          onChange={onChange}
+        />
+        Personal{' '}
+      </label>{' '}
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="professional"
+          checked={type === 'professional'}
+          onChange={onChange}
+        />{' '}
+        Professional
+      </label>
       <div>
         <input
           type="submit"

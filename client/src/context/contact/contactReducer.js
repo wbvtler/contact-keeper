@@ -22,7 +22,7 @@ export default (state, action) => {
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: [action.payload, ...state.contacts],
         loading: false
       };
     case UPDATE_CONTACT:
@@ -32,7 +32,7 @@ export default (state, action) => {
         contacts: state.contacts.map((contact) => {
           // If a contact has the same id as the updated contact,
           // insert the updated contact, otherwise insert the existing contact
-          return contact.id !== action.payload.id ? contact : action.payload;
+          return contact._id !== action.payload._id ? contact : action.payload;
         }),
         loading: false
       };
@@ -41,7 +41,7 @@ export default (state, action) => {
         ...state,
         contacts: state.contacts.filter(
           // remove contacts without the id specified the payload
-          (contact) => contact.id !== action.payload
+          (contact) => contact._id !== action.payload
         ),
         loading: false
       };
